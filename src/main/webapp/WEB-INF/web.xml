@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+							http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         id="WebApp_ID" version="2.5">
+         
+	<!-- servlet은 지연(lazy) 로딩: .do 요청이 와야 생성됨 -->
+	<!-- but, <load-on-startup> 태그 사용하면 미리 만듦 // 숫자는 우선순위 -->
+	<servlet>
+		<servlet-name>app</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>WEB-INF/spring/servlet-context.xml</param-value>
+		</init-param>
+		<!-- dd파일 -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<!-- <servlet-mapping> -> *.do 요청에 대해 같은 이름을 가진 servlet을 실행 -->
+	<servlet-mapping>
+		<servlet-name>app</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+</web-app>
